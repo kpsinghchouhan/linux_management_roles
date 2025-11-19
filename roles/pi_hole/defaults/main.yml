@@ -1,0 +1,6 @@
+---
+# defaults file for kpsinghchouhan.linux_management_roles.pi_hole
+
+# Variable that will be displayed in debug output
+# This demonstrates proper role variable naming with the 'run_' prefix
+pi_hole_my_variable: "default_value"

@@ -1,0 +1,11 @@
+---
+# tasks file for kpsinghchouhan.linux_management_roles.pi_hole
+
+- name: Download pi_hole installation script
+  ansible.builtin.uri:
+    url: https://install.pi-hole.net
+    dest: /tmp/pi_hole.sh
+    mode: '0755'
+
+- name: Run pi_hole installation script
+  ansible.builtin.command: /tmp/pi_hole.sh

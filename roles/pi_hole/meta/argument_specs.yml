@@ -1,0 +1,11 @@
+---
+# argument spec file for kpsinghchouhan.linux_management_roles.pi_hole
+
+argument_specs:
+  main:
+    short_description: Role description.
+    options:
+      pi_hole_my_variable:
+        type: str
+        description: A simple string argument for demonstration.
+        default: "default_value"
