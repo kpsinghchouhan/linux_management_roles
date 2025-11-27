@@ -1,0 +1,5 @@
+---
+# vars file for kpsinghchouhan.linux_management_roles.powerdns
+
+powerdns_backend: pgsql
+powerdns_service_name: pdns

@@ -1,0 +1,65 @@
+---
+# tasks file for kpsinghchouhan.linux_management_roles.powerdns
+
+- name: Include OS-specific variables
+  ansible.builtin.include_vars:
+    file: "vars/{{ ansible_facts['os_family'] }}.yml"
+
+- name: Create PowerDNS PostgreSQL database
+  community.postgresql.postgresql_db:
+    name: "{{ powerdns_db_name }}"
+    state: present
+  become: true
+  become_user: postgres
+
+- name: Create PowerDNS PostgreSQL user
+  community.postgresql.postgresql_user:
+    name: "{{ powerdns_db_user }}"
+    state: present
+    login_db: "{{ powerdns_db_name }}"
+    password: "{{ powerdns_db_password }}"
+  become: true
+  become_user: postgres
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Download the PowerDNS PostgreSQL schema file
+  ansible.builtin.get_url:
+    url: "{{ powerdns_schema_url }}"
+    dest: /tmp/pdns_schema.sql
+    mode: '0644'
+  delegate_to: localhost
+
+#- name: Import the schema into the PowerDNS database
+#  community.postgresql.postgresql_query:
+#    login_db: "{{ powerdns_db_name }}"
+#    query: "{{ lookup('ansible.builtin.file', '/tmp/pdns_schema.sql') }}"
+#  become: true
+#  become_user: postgres
+#  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Ensure systemd-resolved service is stopped and disabled
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: stopped
+    enabled: false
+
+- name: Install PowerDNS Authoritative and PostgreSQL backend
+  ansible.builtin.package:
+    name: "{{ powerdns_packages }}"
+    state: present
+
+- name: Configure PowerDNS to use the gpgsql backend
+  ansible.builtin.template:
+    src: pdns.conf.j2
+    dest: /etc/powerdns/pdns.conf
+    owner: pdns
+    group: pdns
+    mode: '0640'
+  notify: Restart PowerDNS
+
+- name: Ensure PowerDNS service is running
+  ansible.builtin.service:
+    name: "{{ powerdns_service_name }}"
+    state: started
+    enabled: true
+  ignore_errors: "{{ ansible_check_mode }}"

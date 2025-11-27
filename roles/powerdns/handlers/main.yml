@@ -1,0 +1,8 @@
+---
+# handlers file for kpsinghchouhan.linux_management_roles.powerdns
+
+- name: Restart PowerDNS
+  ansible.builtin.service:
+    name: "{{ powerdns_service_name }}"
+    state: restarted
+  ignore_errors: "{{ ansible_check_mode }}"

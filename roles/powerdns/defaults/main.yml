@@ -1,0 +1,9 @@
+---
+# defaults file for kpsinghchouhan.linux_management_roles.powerdns
+
+powerdns_db_user: powerdns
+powerdns_db_name: powerdns_db
+powerdns_db_password: 
+powerdns_db_host: localhost
+powerdns_version: '4.8.3-4build3'
+powerdns_schema_url: "https://raw.githubusercontent.com/PowerDNS/pdns/rel/auth-{{ powerdns_version | ansible.builtin.regex_search('^\\d+\\.\\d+') }}.x/modules/gpgsqlbackend/schema.pgsql.sql"

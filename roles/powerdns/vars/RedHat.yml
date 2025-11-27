@@ -1,0 +1,6 @@
+---
+# vars for RedHat os family
+
+powerdns_packages:
+  - pdns
+  - "pdns-backend-{{ powerdns_backend }}"
