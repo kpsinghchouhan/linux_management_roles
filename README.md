@@ -1,4 +1,4 @@
-# Kpsinghchouhan Linux_management_roles Collection
+# kpsinghchouhan linux_management_roles Collection
 
 This repository contains the `kpsinghchouhan.linux_management_roles` Ansible Collection.
 
