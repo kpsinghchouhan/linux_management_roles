@@ -1,0 +1,6 @@
+---
+# tasks file for kpsinghchouhan.linux_management_roles.step_ca
+
+- name: Display the value of step_ca_my_variable
+  ansible.builtin.debug:
+    msg: "The value of step_ca_my_variable is {{ step_ca_my_variable }}"

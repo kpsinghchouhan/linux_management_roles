@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: foo
-  description: kpsinghchouhan.linux_management_roles run Role
+  description: kpsinghchouhan.linux_management_roles step_ca Role
   company: kpsinghchouhan
 
   # If the issue tracker for your role is not on github, uncomment the

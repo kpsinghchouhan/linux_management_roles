@@ -1,0 +1,28 @@
+# This file is managed by Ansible.
+
+# Launch the generic PostgreSQL backend
+launch=gpgsql
+
+# PostgreSQL host
+gpgsql-host=127.0.0.1
+
+# PostgreSQL port
+gpgsql-port=5432
+
+# Database name for PowerDNS
+gpgsql-dbname={{ powerdns_db_name }}
+
+# Username for connecting to the database
+gpgsql-user={{ powerdns_db_user }}
+
+# Password for the specified user
+gpgsql-password={{ powerdns_db_password }}
+
+# Enable DNSSEC support if required
+gpgsql-dnssec=yes
+
+# Optional: Add extra connection parameters for PostgreSQL
+# gpgsql-extra-connection-parameters=application_name=powerdns
+
+# Optional: Enable prepared statements for better performance
+gpgsql-prepared-statements=yes
