@@ -29,7 +29,7 @@
     mode: '0644'
   delegate_to: localhost
 
-#- name: Import the schema into the PowerDNS database
+# - name: Import the schema into the PowerDNS database
 #  community.postgresql.postgresql_query:
 #    login_db: "{{ powerdns_db_name }}"
 #    query: "{{ lookup('ansible.builtin.file', '/tmp/pdns_schema.sql') }}"
